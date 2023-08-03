@@ -307,8 +307,6 @@ class Script(scripts.Script):
         return [enabled_checkbox, log_in_console_checkbox, figure_braces_exif_checkbox]
     
     def process(self, p : StableDiffusionProcessing, enabled_checkbox, log_in_console_checkbox, figure_braces_exif_checkbox):    
-        if not enabled_checkbox:
-            return
         
         if figure_braces_exif_checkbox:
             self.prompt = p.prompt
@@ -329,8 +327,6 @@ class Script(scripts.Script):
             p.all_negative_prompts[i] = preprocess_prompt(p.all_negative_prompts[i], p.steps, log_in_console_checkbox)
     
     def postprocess_image(self, p: StableDiffusionProcessing, pp: PostprocessImageArgs, enabled_checkbox, _, figure_braces_exif_checkbox):
-        if not enabled_checkbox or not self.is_proc:
-            return
         
         if figure_braces_exif_checkbox:
             img : Image.Image = pp.image
